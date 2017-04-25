@@ -1,3 +1,25 @@
+# helpers
+
+# pluralize student
+
+def student_count(n)
+  if n == 1 then "#{n} great student" else "#{n} great students" end
+end
+
+# pluralize result
+
+def result_count(n)
+    if n == 1 then "#{n} result" else "#{n} results" end
+end
+
+# super helpful divider
+
+def divider
+  puts "---------------------------------"
+end
+
+
+
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
@@ -9,24 +31,46 @@ def input_students
 
   while !name.empty? do
     students << { name: name, cohort: :november }
-    puts "Now we have #{students.count} students"
+    puts "Now we have #{student_count students.count}"
     name = gets.chomp
   end
   # return the array of students
   students
 end
 
+
 def print_header
   puts "The students of Villains Academy"
-  puts "--------------"
+  divider
 end
+
 
 def print(students)
   students.each.with_index(1) { |student, index| puts "#{index}. #{student[:name]} (#{student[:cohort]} cohort)" }
+  divider
 end
 
+
+def search_by_letter(students)
+  puts "Please enter the first letter of the student name you want to search: "
+  letter = gets.chomp
+  puts "Search results for names starting with #{letter.upcase} / #{letter.downcase} :"
+  divider
+  number_of_matches = 0
+  students.each do |student|
+    if student[:name].start_with?(letter.upcase, letter.downcase)
+      puts "#{student[:name]}"
+      number_of_matches += 1
+    end
+  end
+  puts
+  puts number_of_matches > 0 ? "#{result_count number_of_matches} found." : "Sorry, no results found"
+  divider
+end
+
+
 def print_footer(names)
-  puts "Overall, we have #{names.count} great students"
+  puts "Overall, we have #{student_count names.count}"
 end
 
 # call the methods
@@ -34,4 +78,5 @@ end
 students = input_students
 print_header
 print(students)
+search_by_letter(students)
 print_footer(students)
