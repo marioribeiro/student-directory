@@ -99,7 +99,9 @@ end
 
 
 def print_footer(names)
+  puts
   puts "Overall, we have #{student_count names.count}"
+  puts
 end
 
 # call the methods
