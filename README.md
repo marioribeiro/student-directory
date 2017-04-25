@@ -1,6 +1,9 @@
 # Student Directory #
 
-![App Logo](https://cloud.githubusercontent.com/assets/6470014/25412104/78a3e690-2a18-11e7-91e5-01bb8815d8bf.jpg)
+<div align="center">
+  <img alt="student-directory-logo" src="https://cloud.githubusercontent.com/assets/6470014/25412104/78a3e690-2a18-11e7-91e5-01bb8815d8bf.jpg" width="100%"/>
+</div>
+
 
 The student directory script allows you to manage the list of students enrolled at Villains Academy.
 
