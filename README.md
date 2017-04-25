@@ -1,16 +1,18 @@
 # Student Directory #
 
+![App Logo](https://cloud.githubusercontent.com/assets/6470014/25412104/78a3e690-2a18-11e7-91e5-01bb8815d8bf.jpg)
+
 The student directory script allows you to manage the list of students enrolled at Villains Academy.
 
 
-## How to use ##
+## How to use ## :boom:
 
 ```shell
 ruby directory.rb
 ```
 
 
-# Exercises ##
+# Exercises ## :runner:
 
 1. We're using the each() method to iterate over an array of students. How can you modify the program to print a number before the name of each student, e.g. "1. Dr. Hannibal Lecter"?
 
@@ -34,10 +36,10 @@ ruby directory.rb
 
 11. Once you have completed the "Asking for user input" section, open this file. It's Ruby code but it has some typos. Copy it to a local file and open it in Atom without syntax highlighting. To do this, select "Plain Text" in the lower right corner of the window. It should look similar to this:
 
-Exercise List
+## Exercise List ## :eyes:
 
-- [ ] 1
-- [ ] 2
+- [x] 1 [Commit b91fc10](b91fc10cab30bbbad906770043093b4050f711ec)
+- [x] 2 [Commit b91fc10](de22dbc31825a60409447c8a49dfa4899ad28faf)
 - [x] 3 [Commit 8962484](https://github.com/marioribeiro/student-directory/commit/896248483b28e8b578af61a2b817fc2308430c12)
 - [ ] 4
 - [ ] 5
