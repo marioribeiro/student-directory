@@ -69,6 +69,35 @@ def search_by_letter(students)
 end
 
 
+def search_by_length(students)
+  puts "Please enter the maximum length you want to search"
+  search_length = gets.chomp.to_i
+  puts "Search results for names with a maximum length of #{search_length}"
+  divider
+  number_of_matches = 0
+  recommendations = []
+  students.each do |student|
+    student_name_length = student[:name].length
+    if  student_name_length <= search_length
+      puts "#{student[:name]}"
+      number_of_matches += 1
+
+    # add name as a recommendation if the length difference between the search and result is between 1 and 2
+    elsif (student_name_length - search_length).between?(1, 2)
+      recommendations << student[:name]
+    end
+  end
+  puts
+  puts number_of_matches > 0 ? "#{result_count number_of_matches} found." : "Sorry, no results found"
+  puts
+  # print recommendations if available
+  puts "We have search recommendations:" if recommendations.any?
+  recommendations.each do |recommendation|
+    puts "#{recommendation}"
+  end
+end
+
+
 def print_footer(names)
   puts "Overall, we have #{student_count names.count}"
 end
@@ -79,4 +108,5 @@ students = input_students
 print_header
 print(students)
 search_by_letter(students)
+search_by_length(students)
 print_footer(students)
