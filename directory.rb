@@ -25,7 +25,7 @@ def input_students
   puts "To finish, just hit return twice"
   # create an empty array
   students = []
-  # get the first name
+  # get the student name
   name = gets.chomp
   # while the name os not empty, repeat this code
 
@@ -115,7 +115,6 @@ end
 
 students = input_students
 print_header
-print_alt(students)
 print(students)
 search_by_letter(students)
 search_by_length(students)
