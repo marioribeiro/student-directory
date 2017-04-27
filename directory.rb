@@ -97,6 +97,19 @@ def add_cohort
   cohort
 end
 
+
+def add_hobbies
+  hobbies = []
+  puts "Please enter the hobbies of the student"
+  puts "To finish, just hit return twice"
+  hobby = gets.chomp
+  while !hobby.empty?
+    hobbies << hobby
+    hobby = gets.chomp
+  end
+  hobbies
+end
+
 def input_students
   students = []
   continue = create_new_student
@@ -104,7 +117,10 @@ def input_students
     puts "Please enter the name of the student"
     name = gets.chomp
     cohort = add_cohort
-    students << { name: name, cohort: cohort }
+    puts "Please enter the country of birth"
+    country_of_birth = gets.chomp
+    hobbies = add_hobbies
+    students << { name: name, cohort: cohort, country_of_birth: country_of_birth, hobbies: hobbies }
     continue = create_new_student
   end
   students
@@ -118,7 +134,9 @@ end
 
 
 def print(students)
-  students.each.with_index(1) { |student, index| puts "#{index}. #{student[:name]} (#{student[:cohort]} cohort)" }
+  students.each.with_index(1) do |student, index|
+    puts "#{index}. #{student[:name]} (#{student[:cohort]} cohort) "
+  end
   divider
 end
 
