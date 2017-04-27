@@ -39,6 +39,7 @@ ruby directory.rb
 
 11. Once you have completed the "Asking for user input" section, open this file. It's Ruby code but it has some typos. Copy it to a local file and open it in Atom without syntax highlighting. To do this, select "Plain Text" in the lower right corner of the window. It should look similar to this:
 
+
 ## Exercise List :eyes:
 
 - [x] 1 [Commit b91fc10](https://github.com/marioribeiro/student-directory/commit/b91fc10cab30bbbad906770043093b4050f711ec)
@@ -49,7 +50,7 @@ ruby directory.rb
 - [ ] 6
 - [x] 7 [Commit 1e860a3](https://github.com/marioribeiro/student-directory/commit/1e860a33a75bb17c539a2b6279a470ee23b8e439)
 - [ ] 8
-- [ ] 9
+- [x] 9 [Commit de22dbc](https://github.com/marioribeiro/student-directory/commit/de22dbc31825a60409447c8a49dfa4899ad28faf)
 - [ ] 10
 - [ ] 11
 - [ ] 12
