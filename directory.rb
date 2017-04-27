@@ -50,6 +50,13 @@ def print(students)
   divider
 end
 
+def print_alt(students)
+  i = 0
+  while i < students.count
+    puts students[i][:name]
+    i += 1
+  end
+end
 
 def search_by_letter(students)
   puts "Please enter the first letter of the student name you want to search: "
@@ -108,7 +115,7 @@ end
 
 students = input_students
 print_header
-print(students)
+print_alt(students)
 search_by_letter(students)
 search_by_length(students)
 print_footer(students)
