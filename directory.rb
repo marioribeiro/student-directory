@@ -18,6 +18,24 @@ def divider
   puts "---------------------------------"
 end
 
+# data structures
+
+$cohorts = {
+  January: 0,
+  February: 0,
+  March: 0,
+  April: 0,
+  May: 4,
+  June: 25,
+  July: 25,
+  August: 15,
+  September: 25,
+  October: 25,
+  November: 25,
+  December: 25
+}
+
+
 def create_new_student
   puts "Do you want to create a new student? (y/n)"
   continue = gets.chomp.downcase
@@ -31,14 +49,61 @@ def create_new_student
   end
 end
 
+
+def add_cohort
+  next_cohort = :May
+  puts
+  puts "Available cohorts:"
+  puts "Number / Month / Vacancies"
+  month_number = 1
+  $cohorts.each do |month, vacancies|
+    puts "(#{month_number}) #{month} - vacancies: #{vacancies}"
+    month_number +=1
+  end
+  puts
+  puts "Please enter the month number"
+  cohort = gets.chomp
+  case cohort
+  when "1"
+    cohort = :May
+  when "2"
+    cohort = :May
+  when "3"
+    cohort = :May
+  when "4"
+    cohort = :May
+  when "5"
+    cohort = :May
+  when "6"
+    cohort = :June
+  when "7"
+    cohort = :July
+  when "8"
+    cohort = :August
+  when "9"
+    cohort = :September
+  when "10"
+    cohort = :October
+  when "11"
+    cohort = :November
+  when "12"
+    cohort = :December
+  when ""
+    puts "No input, the upcoming #{next_cohort} cohort will be added"
+    cohort = next_cohort
+  else
+    puts "Input not recognised, the upcoming #{next_cohort} cohort was added"
+  end
+  cohort
+end
+
 def input_students
   students = []
   continue = create_new_student
   while continue
     puts "Please enter the name of the student"
     name = gets.chomp
-    puts "Please enter the cohort"
-    cohort = gets.chomp
+    cohort = add_cohort
     students << { name: name, cohort: cohort }
     continue = create_new_student
   end
