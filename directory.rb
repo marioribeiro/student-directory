@@ -18,23 +18,30 @@ def divider
   puts "---------------------------------"
 end
 
-
+def create_new_student
+  puts "Do you want to create a new student? (y/n)"
+  continue = gets.chomp.downcase
+  if continue == "y"
+    return true
+  elsif continue == "n"
+    return false
+  else
+    puts "Invalid choice."
+    create_new_student
+  end
+end
 
 def input_students
-  puts "Please enter the names of the students"
-  puts "To finish, just hit return twice"
-  # create an empty array
   students = []
-  # get the student name
-  name = gets.chomp
-  # while the name os not empty, repeat this code
-
-  while !name.empty? do
-    students << { name: name, cohort: :november }
-    puts "Now we have #{student_count students.count}"
+  continue = create_new_student
+  while continue
+    puts "Please enter the name of the student"
     name = gets.chomp
+    puts "Please enter the cohort"
+    cohort = gets.chomp
+    students << { name: name, cohort: cohort }
+    continue = create_new_student
   end
-  # return the array of students
   students
 end
 
