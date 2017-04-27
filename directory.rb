@@ -53,7 +53,7 @@ end
 def print_alt(students)
   i = 0
   while i < students.count
-    puts students[i][:name]
+    puts "#{i + 1}. #{students[i][:name]} (#{students[i][:cohort]} cohort)"
     i += 1
   end
 end
@@ -116,6 +116,7 @@ end
 students = input_students
 print_header
 print_alt(students)
+print(students)
 search_by_letter(students)
 search_by_length(students)
 print_footer(students)
