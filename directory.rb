@@ -82,7 +82,9 @@ def process_main_menu(selection)
   when "3"
     interactive_search_menu
   when "4"
-    save_students
+    puts "Please enter the name of the file (i.e data.csv). Leave empty to save to the default file"
+    save_filename = gets.chomp
+    save_filename.empty? ? save_students : save_students(save_filename)
   when "5"
     puts "Please enter the name of the file (i.e data.csv). Leave empty to open the default file"
     load_filename = gets.chomp
@@ -205,21 +207,19 @@ def input_students
   end
 end
 
-def save_students
-  puts "Please enter the filename (i.e data.csv)"
-  filename = gets.chomp
+def save_students(filename = "students.csv")
   #open the file
-  file = File.open(filename, "w")
-  # iterate over the array of students
-  @students.each do |student|
-    student_data = [student[:name], student[:cohort], student[:country_of_birth], student[:hobbies]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
+  file = File.open(filename, "w") do |file|
+    @students.each do |student|
+      # iterate over the array of students
+      student_data = [student[:name], student[:cohort], student[:country_of_birth], student[:hobbies]]
+      csv_line = student_data.join(",")
+      file.puts csv_line
+    end
+    puts
+    puts "*** Saved successfully to #{filename} ***"
+    puts
   end
-  file.close
-  puts
-  puts "*** Saved successfully to #{filename} ***"
-  puts
 end
 
 def try_load_students
@@ -237,16 +237,20 @@ def try_load_students
 end
 
 def load_students(filename = "students.csv")
-  file = File.open(filename, "r")
-  file.readlines.each do |line|
-    name, cohort, country_of_birth, hobbies = line.chomp.split(',')
-    save_student(name, cohort, country_of_birth, hobbies)
+  if File.exists?(filename)
+    file = File.open(filename, "r") do |file|
+      file.readlines.each do |line|
+        name, cohort, country_of_birth, hobbies = line.chomp.split(',')
+        save_student(name, cohort, country_of_birth, hobbies)
+      end
+      puts
+      puts "*** File loaded successfully ***"
+      puts "*** Using: #{filename}"
+      puts
+    end
+  else
+    puts "*** WARNING *** File #{filename} not found"
   end
-  file.close
-  puts
-  puts "*** File loaded successfully ***"
-  puts "*** Using: #{filename}"
-  puts
 end
 
 # I'm not sure if this is the most efficient way
