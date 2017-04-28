@@ -101,14 +101,14 @@ end
 def interactive_main_menu
   loop do
     main_menu
-    process_main_menu(STDIN.gets.chomp)
+    process_main_menu(STDIN.gets.strip)
   end
 end
 
 def interactive_search_menu
   loop do
     search_menu
-    process_search_menu(STDIN.gets.chomp)
+    process_search_menu(STDIN.gets.strip)
   end
 end
 
