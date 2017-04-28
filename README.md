@@ -82,6 +82,6 @@ ruby directory.rb
 - [ ] 14.3
 - [x] 14.4 [Commit 8cd4cb7](https://github.com/marioribeiro/student-directory/commit/8cd4cb71df10ecd4702cad95aa2e82fee9f35e9e)
 - [x] 14.5 [Commit 1226df7](https://github.com/marioribeiro/student-directory/commit/1226df7075b9cf505d66f02f9b9e99efec7963f7)
-- [ ] 14.6
+- [x] 14.6 [Commit 6ee83ee](https://github.com/marioribeiro/student-directory/commit/6ee83ee11ed0280a8f1f4fdcdab568f83d35af4d)
 - [ ] 14.7
 - [ ] 14.8
