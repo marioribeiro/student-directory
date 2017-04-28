@@ -257,7 +257,6 @@ def try_load_students
 end
 
 
-
 def load_students(filename = @default_filename)
   if File.exists?(filename)
     CSV.foreach(filename) do |row|
@@ -272,7 +271,7 @@ def load_students(filename = @default_filename)
     puts "Loaded #{student_count(@students.count)} from #{filename}"
     puts
   else
-    if filename = @default_filename
+    if filename == @default_filename
       puts "The default file #{@default_filename} was not found."
       File.write("students.csv", "")
       @loaded_filename = filename
