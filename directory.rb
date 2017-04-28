@@ -213,6 +213,9 @@ def save_students
     file.puts csv_line
   end
   file.close
+  puts
+  puts "*** Saved successfully ***"
+  puts
 end
 
 def try_load_students
@@ -236,6 +239,10 @@ def load_students(filename = "students.csv")
     save_student(name, cohort, country_of_birth, hobbies)
   end
   file.close
+  puts
+  puts "*** File loaded successfully ***"
+  puts "*** Using: #{filename}"
+  puts
 end
 
 # I'm not sure if this is the most efficient way
