@@ -198,7 +198,7 @@ def input_students
     puts "Please enter the country of birth".center(@width)
     country_of_birth = STDIN.gets.chomp
     hobbies = add_hobbies
-    @students << { name: name, cohort: cohort, country_of_birth: country_of_birth, hobbies: hobbies }
+    save_student(name, cohort, country_of_birth, hobbies)
     continue = create_new_student
   end
 end
@@ -231,9 +231,14 @@ def load_students(filename = "students.csv")
   file = File.open(filename, "r")
   file.readlines.each do |line|
     name, cohort, country_of_birth, hobbies = line.chomp.split(',')
-    @students << {name: name, cohort: cohort, country_of_birth: country_of_birth, hobbies: hobbies}
+    save_student(name, cohort, country_of_birth, hobbies)
   end
   file.close
+end
+
+# I'm not sure if this is the most efficient way
+def save_student(name, cohort,country_of_birth, hobbies)
+  @students << {name: name, cohort: cohort, country_of_birth: country_of_birth, hobbies: hobbies}
 end
 
 def print_header
