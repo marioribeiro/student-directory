@@ -77,7 +77,7 @@ ruby directory.rb
 
 ## Exercise List - Step 14 :eyes:
 
-- [ ] 14.1
+- [x] 14.1 [Commit 386283a](https://github.com/marioribeiro/student-directory/commit/386283a1fc80d0d7b82e8e8e83fcef33c95b4767)
 - [ ] 14.2
 - [ ] 14.3
 - [ ] 14.4
