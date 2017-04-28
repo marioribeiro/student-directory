@@ -223,7 +223,9 @@ def try_load_students
     puts "Loaded #{@students.count} from #{filename}"
   else
     puts "Sorry, #{filename} doesn't exist."
-    exit
+    puts "Loading the default file: students.csv"
+    puts
+    load_students
   end
 end
 
