@@ -15,7 +15,7 @@ ruby directory.rb
 ```
 
 
-# Exercises :runner:
+# Exercises - Step 8:runner:
 
 1. We're using the each() method to iterate over an array of students. How can you modify the program to print a number before the name of each student, e.g. "1. Dr. Hannibal Lecter"?
 
@@ -44,15 +44,15 @@ ruby directory.rb
 
 ## Exercise List :eyes:
 
-- [x] 1 [Commit b91fc10](https://github.com/marioribeiro/student-directory/commit/b91fc10cab30bbbad906770043093b4050f711ec)
-- [x] 2 [Commit b91fc10](https://github.com/marioribeiro/student-directory/commit/de22dbc31825a60409447c8a49dfa4899ad28faf)
-- [x] 3 [Commit 8962484](https://github.com/marioribeiro/student-directory/commit/896248483b28e8b578af61a2b817fc2308430c12)
-- [x] 4 [Commit 084c573](https://github.com/marioribeiro/student-directory/commit/084c5732e93042a8cfb8d4750582128aaa96142b)
-- [x] 5 [Commit 7fe7779](https://github.com/marioribeiro/student-directory/commit/7fe77792d02355a1a97dc9a3fc5a2489d33da57e)
-- [ ] 6
-- [x] 7 [Commit 1e860a3](https://github.com/marioribeiro/student-directory/commit/1e860a33a75bb17c539a2b6279a470ee23b8e439)
-- [x] 8 [Commit 4d9c574](https://github.com/marioribeiro/student-directory/commit/4d9c5740d26d9bcfaa2572f7656b43ef7e6a6417)
-- [x] 9 [Commit de22dbc](https://github.com/marioribeiro/student-directory/commit/de22dbc31825a60409447c8a49dfa4899ad28faf)
-- [ ] 10
-- [x] 11 [Commit 775261a](https://github.com/marioribeiro/student-directory/commit/775261a7edc881dc4c9052aa164278f4c60c3076)
-- [x] 12 [Commit 18e2fd1](https://github.com/marioribeiro/student-directory/commit/18e2fd1f2c1556cb5b285e74cbd4213fde28c054)
+- [x] 8.1 [Commit b91fc10](https://github.com/marioribeiro/student-directory/commit/b91fc10cab30bbbad906770043093b4050f711ec)
+- [x] 8.2 [Commit b91fc10](https://github.com/marioribeiro/student-directory/commit/de22dbc31825a60409447c8a49dfa4899ad28faf)
+- [x] 8.3 [Commit 8962484](https://github.com/marioribeiro/student-directory/commit/896248483b28e8b578af61a2b817fc2308430c12)
+- [x] 8.4 [Commit 084c573](https://github.com/marioribeiro/student-directory/commit/084c5732e93042a8cfb8d4750582128aaa96142b)
+- [x] 8.5 [Commit 7fe7779](https://github.com/marioribeiro/student-directory/commit/7fe77792d02355a1a97dc9a3fc5a2489d33da57e)
+- [ ] 8.6
+- [x] 8.7 [Commit 1e860a3](https://github.com/marioribeiro/student-directory/commit/1e860a33a75bb17c539a2b6279a470ee23b8e439)
+- [x] 8.8 [Commit 4d9c574](https://github.com/marioribeiro/student-directory/commit/4d9c5740d26d9bcfaa2572f7656b43ef7e6a6417)
+- [x] 8.9 [Commit de22dbc](https://github.com/marioribeiro/student-directory/commit/de22dbc31825a60409447c8a49dfa4899ad28faf)
+- [ ] 8.10
+- [x] 8.11 [Commit 775261a](https://github.com/marioribeiro/student-directory/commit/775261a7edc881dc4c9052aa164278f4c60c3076)
+- [x] 8.12 [Commit 18e2fd1](https://github.com/marioribeiro/student-directory/commit/18e2fd1f2c1556cb5b285e74cbd4213fde28c054)
