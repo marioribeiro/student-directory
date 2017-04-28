@@ -55,4 +55,4 @@ ruby directory.rb
 - [x] 9 [Commit de22dbc](https://github.com/marioribeiro/student-directory/commit/de22dbc31825a60409447c8a49dfa4899ad28faf)
 - [ ] 10
 - [ ] 11
-- [ ] 12
+- [x] 12 [Commit 18e2fd1](https://github.com/marioribeiro/student-directory/commit/18e2fd1f2c1556cb5b285e74cbd4213fde28c054)
