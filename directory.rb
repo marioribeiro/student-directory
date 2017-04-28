@@ -37,6 +37,8 @@ end
 
 @students = []
 
+@width = 50
+
 # main program
 
 def main_menu
@@ -114,14 +116,14 @@ end
 
 
 def create_new_student
-  puts "Do you want to create a new student? (y/n)"
+  puts "Do you want to create a new student? (y/n)".center(@width)
   continue = STDIN.gets.chomp.downcase
   if continue == "y"
     return true
   elsif continue == "n"
     return false
   else
-    puts "Invalid choice."
+    puts "Invalid choice.".center(@width)
     create_new_student
   end
 end
@@ -138,7 +140,7 @@ def add_cohort
     month_number +=1
   end
   puts
-  puts "Please enter the month number"
+  puts "Please enter the month number".center(@width)
   cohort = STDIN.gets.chomp
   case cohort
   when "1"
@@ -166,10 +168,10 @@ def add_cohort
   when "12"
     cohort = :December
   when ""
-    puts "No input, the upcoming #{next_cohort} cohort will be added"
+    puts "No input, the upcoming #{next_cohort} cohort will be added".center(@width)
     cohort = next_cohort
   else
-    puts "Input not recognised, the upcoming #{next_cohort} cohort was added"
+    puts "Input not recognised, the upcoming #{next_cohort} cohort was added".center(@width)
   end
   cohort
 end
@@ -177,8 +179,8 @@ end
 
 def add_hobbies
   hobbies = []
-  puts "Please enter the hobbies of the student"
-  puts "To finish, just hit return twice"
+  puts "Please enter the hobbies of the student".center(@width)
+  puts "To finish, just hit return twice".center(@width)
   hobby = STDIN.gets.chomp
   while !hobby.empty?
     hobbies << hobby
@@ -190,10 +192,10 @@ end
 def input_students
   continue = create_new_student
   while continue
-    puts "Please enter the name of the student"
+    puts "Please enter the name of the student".center(@width)
     name = STDIN.gets.chomp
     cohort = add_cohort
-    puts "Please enter the country of birth"
+    puts "Please enter the country of birth".center(@width)
     country_of_birth = STDIN.gets.chomp
     hobbies = add_hobbies
     @students << { name: name, cohort: cohort, country_of_birth: country_of_birth, hobbies: hobbies }
@@ -235,14 +237,14 @@ def load_students(filename = "students.csv")
 end
 
 def print_header
-  puts "The students of Villains Academy"
+  puts "The students of Villains Academy".center(@width)
   divider
 end
 
 
 def print_students_by_cohort
   if @students.empty?
-    puts "Oopps :( No students available"
+    puts "Oopps :( No students available".center(@width)
   else
     cohorts = @students.map do |student|
        student[:cohort]
@@ -259,7 +261,7 @@ end
 
 def print_students_list
   if @students.empty?
-    puts "Oopps :( No students available"
+    puts "Oopps :( No students available".center(@width)
   else
     @students.each.with_index(1) do |student, index|
       puts "#{index}. #{student[:name]} (#{student[:cohort]} cohort)"
@@ -277,9 +279,9 @@ def print_alt(students)
 end
 
 def search_by_letter
-  puts "Please enter the first letter of the student name you want to search: "
+  puts "Please enter the first letter of the student name you want to search: ".center(@width)
   letter = STDIN.gets.chomp
-  puts letter == '' ? "No search value was provided. Showing the full list of students" : "Search results for names starting with #{letter.upcase} / #{letter.downcase} :"
+  puts letter == '' ? "No search value was provided. Showing the full list of students".center(@width) : "Search results for names starting with #{letter.upcase} / #{letter.downcase} :".center(@width)
   divider
   number_of_matches = 0
   @students.each do |student|
@@ -289,15 +291,15 @@ def search_by_letter
     end
   end
   puts
-  puts number_of_matches > 0 ? "#{result_count number_of_matches} found." : "Sorry, no results found"
+  puts number_of_matches > 0 ? "#{result_count number_of_matches} found.".center(@width) : "Sorry, no results found".center(@width)
   divider
 end
 
 
 def search_by_length
-  puts "Please enter the maximum length you want to search"
+  puts "Please enter the maximum length you want to search".center(@width)
   search_length = STDIN.gets.chomp.to_i
-  puts "Search results for names with a maximum length of #{search_length}"
+  puts "Search results for names with a maximum length of #{search_length}".center(@width)
   divider
   number_of_matches = 0
   recommendations = []
@@ -313,7 +315,7 @@ def search_by_length
     end
   end
   puts
-  puts number_of_matches > 0 ? "#{result_count number_of_matches} found." : "Sorry, no results found"
+  puts number_of_matches > 0 ? "#{result_count number_of_matches} found.".center(@width) : "Sorry, no results found".center(@width)
   puts
   # print recommendations if available
   puts "We have search recommendations:" if recommendations.any?
