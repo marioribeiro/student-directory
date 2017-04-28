@@ -41,10 +41,22 @@ end
 
 @width = 50
 
+@loaded_filename = ""
+@default_filename = "students.csv"
+
 # main program
 
+def header_menu
+  divider
+  puts "-- Student Directory"
+  puts "-- Using file: #{@loaded_filename}"
+  divider
+end
+
 def main_menu
+  header_menu
   puts
+  puts "*** MAIN MENU"
   puts "1. Create students"
   puts "2. List Students"
   puts "3. Search Students"
@@ -84,12 +96,12 @@ def process_main_menu(selection)
   when "3"
     interactive_search_menu
   when "4"
-    puts "Please enter the name of the file (i.e data.csv). Leave empty to save to the default file"
-    save_filename = gets.chomp
+    puts "Please enter the name of the file (i.e data.csv). Leave empty to save to #{@loaded_filename}"
+    save_filename = STDIN.gets.chomp
     save_filename.empty? ? save_students : save_students(save_filename)
   when "5"
     puts "Please enter the name of the file (i.e data.csv). Leave empty to open the default file"
-    load_filename = gets.chomp
+    load_filename = STDIN.gets.chomp
     load_filename.empty? ? load_students : load_students(load_filename)
   when "9"
     exit
@@ -210,13 +222,14 @@ def input_students
 end
 
 
-def save_students(filename = "students.csv")
+def save_students(filename = @default_filename)
   #open the file using CSV Class
   CSV.open(filename, "wb") do |csv|
     @students.each do |student|
       # iterate over the array of students
       csv << [student[:name], student[:cohort], student[:country_of_birth], student[:hobbies]]
     end
+    @loaded_filename = filename
     puts
     puts "*** Saved successfully to #{filename} ***"
     puts
@@ -225,13 +238,19 @@ end
 
 def try_load_students
   filename = ARGV.first # first argument from the command line
-  return if filename.nil? # get out of the method if no argument is given
+  if filename.nil?
+    puts "Loading the default file: #{@default_filename}"
+    puts
+    @loaded_filename = @default_filename
+    load_students
+    return
+  end
   if File.exists?(filename) # if it exists
+    @loaded_filename = filename
     load_students(filename)
-    puts "Loaded #{student_count(@students.count)} from #{filename}"
   else
     puts "Sorry, #{filename} doesn't exist."
-    puts "Loading the default file: students.csv"
+    puts "Loading the default file: #{@default_filename}"
     puts
     load_students
   end
@@ -239,21 +258,31 @@ end
 
 
 
-def load_students(filename = "students.csv")
+def load_students(filename = @default_filename)
   if File.exists?(filename)
     CSV.foreach(filename) do |row|
       name, cohort, country_of_birth, hobbies = row
       save_student(name, cohort, country_of_birth, hobbies)
     end
+    @loaded_filename = filename
     puts
     puts "*** File loaded successfully ***"
     puts "*** Using: #{filename}"
     puts
+    puts "Loaded #{student_count(@students.count)} from #{filename}"
+    puts
   else
-    puts "*** WARNING *** File #{filename} not found"
+    if filename = @default_filename
+      puts "The default file #{@default_filename} was not found."
+      File.write("students.csv", "")
+      @loaded_filename = filename
+      puts "A new #{@default_filename} was created."
+    else
+      puts "*** WARNING *** File #{filename} not found"
+      puts "Using the default #{@default_filename}"
+    end
   end
 end
-
 
 # I'm not sure if this is the most efficient way
 def save_student(name, cohort,country_of_birth, hobbies)
