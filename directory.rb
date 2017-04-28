@@ -1,3 +1,5 @@
+require 'csv'
+
 # helpers
 
 # pluralize student
@@ -207,14 +209,13 @@ def input_students
   end
 end
 
+
 def save_students(filename = "students.csv")
-  #open the file
-  file = File.open(filename, "w") do |file|
+  #open the file using CSV Class
+  CSV.open(filename, "wb") do |csv|
     @students.each do |student|
       # iterate over the array of students
-      student_data = [student[:name], student[:cohort], student[:country_of_birth], student[:hobbies]]
-      csv_line = student_data.join(",")
-      file.puts csv_line
+      csv << [student[:name], student[:cohort], student[:country_of_birth], student[:hobbies]]
     end
     puts
     puts "*** Saved successfully to #{filename} ***"
@@ -236,22 +237,23 @@ def try_load_students
   end
 end
 
+
+
 def load_students(filename = "students.csv")
   if File.exists?(filename)
-    file = File.open(filename, "r") do |file|
-      file.readlines.each do |line|
-        name, cohort, country_of_birth, hobbies = line.chomp.split(',')
-        save_student(name, cohort, country_of_birth, hobbies)
-      end
-      puts
-      puts "*** File loaded successfully ***"
-      puts "*** Using: #{filename}"
-      puts
+    CSV.foreach(filename) do |row|
+      name, cohort, country_of_birth, hobbies = row
+      save_student(name, cohort, country_of_birth, hobbies)
     end
+    puts
+    puts "*** File loaded successfully ***"
+    puts "*** Using: #{filename}"
+    puts
   else
     puts "*** WARNING *** File #{filename} not found"
   end
 end
+
 
 # I'm not sure if this is the most efficient way
 def save_student(name, cohort,country_of_birth, hobbies)
