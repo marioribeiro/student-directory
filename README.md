@@ -49,7 +49,7 @@ ruby directory.rb
 - [x] 8.3 [Commit 8962484](https://github.com/marioribeiro/student-directory/commit/896248483b28e8b578af61a2b817fc2308430c12)
 - [x] 8.4 [Commit 084c573](https://github.com/marioribeiro/student-directory/commit/084c5732e93042a8cfb8d4750582128aaa96142b)
 - [x] 8.5 [Commit 7fe7779](https://github.com/marioribeiro/student-directory/commit/7fe77792d02355a1a97dc9a3fc5a2489d33da57e)
-- [ ] 8.6
+- [x] 8.6 [Commit 0864582](https://github.com/marioribeiro/student-directory/commit/086458232f68bc3a1448e18a474af8d59ecce358)
 - [x] 8.7 [Commit 1e860a3](https://github.com/marioribeiro/student-directory/commit/1e860a33a75bb17c539a2b6279a470ee23b8e439)
 - [x] 8.8 [Commit 4d9c574](https://github.com/marioribeiro/student-directory/commit/4d9c5740d26d9bcfaa2572f7656b43ef7e6a6417)
 - [x] 8.9 [Commit de22dbc](https://github.com/marioribeiro/student-directory/commit/de22dbc31825a60409447c8a49dfa4899ad28faf)
