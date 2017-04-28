@@ -46,8 +46,8 @@ def main_menu
   puts "1. Create students"
   puts "2. List Students"
   puts "3. Search Students"
-  puts "4. Save the list to students.csv"
-  puts "5. Load the list from students.csv"
+  puts "4. Save to file"
+  puts "5. Load from file"
   puts "9. Exit"
 end
 
@@ -84,7 +84,9 @@ def process_main_menu(selection)
   when "4"
     save_students
   when "5"
-    load_students
+    puts "Please enter the name of the file (i.e data.csv). Leave empty to open the default file"
+    load_filename = gets.chomp
+    load_filename.empty? ? load_students : load_students(load_filename)
   when "9"
     exit
   else
@@ -204,8 +206,10 @@ def input_students
 end
 
 def save_students
+  puts "Please enter the filename (i.e data.csv)"
+  filename = gets.chomp
   #open the file
-  file = File.open("students.csv", "w")
+  file = File.open(filename, "w")
   # iterate over the array of students
   @students.each do |student|
     student_data = [student[:name], student[:cohort], student[:country_of_birth], student[:hobbies]]
@@ -214,7 +218,7 @@ def save_students
   end
   file.close
   puts
-  puts "*** Saved successfully ***"
+  puts "*** Saved successfully to #{filename} ***"
   puts
 end
 
@@ -223,7 +227,7 @@ def try_load_students
   return if filename.nil? # get out of the method if no argument is given
   if File.exists?(filename) # if it exists
     load_students(filename)
-    puts "Loaded #{@students.count} from #{filename}"
+    puts "Loaded #{student_count(@students.count)} from #{filename}"
   else
     puts "Sorry, #{filename} doesn't exist."
     puts "Loading the default file: students.csv"
