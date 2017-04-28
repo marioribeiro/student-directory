@@ -35,6 +35,28 @@ $cohorts = {
   December: 25
 }
 
+def interactive_menu
+  students = []
+  loop do
+    puts "1. Create students"
+    puts "2. Show Students"
+    puts "9. Exit"
+    selection = gets.chomp
+    case selection
+    when "1"
+      students = input_students
+    when "2"
+      print_header
+      print(students)
+      print_footer(students)
+    when "9"
+      exit
+    else
+      puts "Invalid option, try again."
+    end
+  end
+end
+
 
 def create_new_student
   puts "Do you want to create a new student? (y/n)"
@@ -205,11 +227,6 @@ def print_footer(names)
   puts
 end
 
-# call the methods
+# call the interactive menu
 
-students = input_students
-print_header
-print(students)
-search_by_letter(students)
-search_by_length(students)
-print_footer(students)
+interactive_menu
