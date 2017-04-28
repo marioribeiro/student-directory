@@ -5,13 +5,13 @@ require 'csv'
 # pluralize student
 
 def student_count(n)
-  if n == 1 then "#{n} great student" else "#{n} great students" end
+  n == 1 ? "#{n} great student" : "#{n} great students"
 end
 
 # pluralize result
 
 def result_count(n)
-    if n == 1 then "#{n} result" else "#{n} results" end
+    n == 1 ? "#{n} result" : "#{n} results"
 end
 
 # super helpful divider
@@ -150,13 +150,13 @@ def add_cohort
   cohort = STDIN.gets.chomp
   case cohort
   when "1"
-    cohort = :May
+    cohort = :January
   when "2"
-    cohort = :May
+    cohort = :February
   when "3"
-    cohort = :May
+    cohort = :March
   when "4"
-    cohort = :May
+    cohort = :April
   when "5"
     cohort = :May
   when "6"
@@ -270,15 +270,17 @@ def print_students_by_cohort
   if @students.empty?
     puts "Oopps :( No students available".center(@width)
   else
+    print_header
     cohorts = @students.map do |student|
        student[:cohort]
     end
     cohorts.uniq.each do |cohort|
-      puts "#{cohort} cohort"
+      puts "** #{cohort} cohort:"
         @students.each do |student|
-          puts student[:name] if student[:cohort] == cohort
+          puts " - #{student[:name]}" if student[:cohort] == cohort
         end
     end
+    print_footer
   end
 end
 
@@ -310,7 +312,7 @@ def search_by_letter
   number_of_matches = 0
   @students.each do |student|
     if student[:name].start_with?(letter.upcase, letter.downcase)
-      puts "#{student[:name]}"
+      puts "#{student[:name]} (#{student[:cohort]} cohort)"
       number_of_matches += 1
     end
   end
@@ -330,9 +332,8 @@ def search_by_length
   @students.each do |student|
     student_name_length = student[:name].length
     if  student_name_length <= search_length
-      puts "#{student[:name]}"
+      puts "#{student[:name]} (#{student[:cohort]} cohort)"
       number_of_matches += 1
-
     # add name as a recommendation if the length difference between the search and result is between 1 and 2
     elsif (student_name_length - search_length).between?(1, 2)
       recommendations << student[:name]
