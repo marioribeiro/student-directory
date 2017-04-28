@@ -44,6 +44,7 @@ def main_menu
   puts "1. Create students"
   puts "2. List Students"
   puts "3. Search Students"
+  puts "4. Save the list to students.csv"
   puts "9. Exit"
 end
 
@@ -77,6 +78,8 @@ def process_main_menu(selection)
     show_students
   when "3"
     interactive_search_menu
+  when "4"
+    save_students
   when "9"
     exit
   else
@@ -193,6 +196,18 @@ def input_students
     @students << { name: name, cohort: cohort, country_of_birth: country_of_birth, hobbies: hobbies }
     continue = create_new_student
   end
+end
+
+def save_students
+  #open the file
+  file = File.open("students.csv", "w")
+  # iterate over the array of students
+  @students.each do |student|
+    student_data = [student[:name], student[:cohort], student[:country_of_birth], student[:hobbies].join(" ")]
+    csv_line = student_data.join(",")
+    file.puts csv_line
+  end
+  file.close
 end
 
 
