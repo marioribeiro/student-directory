@@ -90,7 +90,7 @@ ruby print_file.rb filename
 
 - [x] 14.1 [Commit 386283a](https://github.com/marioribeiro/student-directory/commit/386283a1fc80d0d7b82e8e8e83fcef33c95b4767)
 - [x] 14.2 [Commit 386283a](https://github.com/marioribeiro/student-directory/commit/86daf193743d82f442c8b48ed1966a9016890d01)
-- [ ] 14.3
+- [x] 14.3 [Commit 0bf91ed](https://github.com/marioribeiro/student-directory/commit/0bf91ed2dfa90eab9331f2ac22bac86f1eaa0cc5)
 - [x] 14.4 [Commit 8cd4cb7](https://github.com/marioribeiro/student-directory/commit/8cd4cb71df10ecd4702cad95aa2e82fee9f35e9e)
 - [x] 14.5 [Commit 1226df7](https://github.com/marioribeiro/student-directory/commit/1226df7075b9cf505d66f02f9b9e99efec7963f7)
 - [x] 14.6 [Commit 6ee83ee](https://github.com/marioribeiro/student-directory/commit/6ee83ee11ed0280a8f1f4fdcdab568f83d35af4d)
