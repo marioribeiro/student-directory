@@ -155,7 +155,7 @@ end
 def search_by_letter(students)
   puts "Please enter the first letter of the student name you want to search: "
   letter = gets.chomp
-  puts "Search results for names starting with #{letter.upcase} / #{letter.downcase} :"
+  puts letter == '' ? "No search value was provided. Showing the full list of students" : "Search results for names starting with #{letter.upcase} / #{letter.downcase} :"
   divider
   number_of_matches = 0
   students.each do |student|
