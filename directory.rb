@@ -20,7 +20,7 @@ end
 
 # data structures
 
-$cohorts = {
+@cohorts = {
   January: 0,
   February: 0,
   March: 0,
@@ -35,25 +35,74 @@ $cohorts = {
   December: 25
 }
 
-def interactive_menu
-  students = []
+@students = []
+
+# main program
+
+def main_menu
+  puts
+  puts "1. Create students"
+  puts "2. List Students"
+  puts "3. Search Students"
+  puts "9. Exit"
+end
+
+def search_menu
+  puts
+  puts "Student Search:"
+  puts "1. Search by Letter"
+  puts "2. Search by Length"
+  puts "3. Back"
+end
+
+
+def process_search_menu(selection)
+  case selection
+  when "1"
+    search_by_letter
+  when "2"
+    search_by_length
+  when "3"
+    interactive_main_menu
+  else
+    puts "Invalid option, try again."
+  end
+end
+
+def process_main_menu(selection)
+  case selection
+  when "1"
+    students = input_students
+  when "2"
+    show_students
+  when "3"
+    interactive_search_menu
+  when "9"
+    exit
+  else
+    puts "Invalid option, try again."
+  end
+end
+
+
+def show_students
+  print_header
+  print_students_list
+  print_footer
+end
+
+
+def interactive_main_menu
   loop do
-    puts "1. Create students"
-    puts "2. Show Students"
-    puts "9. Exit"
-    selection = gets.chomp
-    case selection
-    when "1"
-      students = input_students
-    when "2"
-      print_header
-      print(students)
-      print_footer(students)
-    when "9"
-      exit
-    else
-      puts "Invalid option, try again."
-    end
+    main_menu
+    process_main_menu(gets.chomp)
+  end
+end
+
+def interactive_search_menu
+  loop do
+    search_menu
+    process_search_menu(gets.chomp)
   end
 end
 
@@ -78,7 +127,7 @@ def add_cohort
   puts "Available cohorts:"
   puts "Number / Month / Vacancies"
   month_number = 1
-  $cohorts.each do |month, vacancies|
+  @cohorts.each do |month, vacancies|
     puts "(#{month_number}) #{month} - vacancies: #{vacancies}"
     month_number +=1
   end
@@ -133,7 +182,6 @@ def add_hobbies
 end
 
 def input_students
-  students = []
   continue = create_new_student
   while continue
     puts "Please enter the name of the student"
@@ -142,10 +190,9 @@ def input_students
     puts "Please enter the country of birth"
     country_of_birth = gets.chomp
     hobbies = add_hobbies
-    students << { name: name, cohort: cohort, country_of_birth: country_of_birth, hobbies: hobbies }
+    @students << { name: name, cohort: cohort, country_of_birth: country_of_birth, hobbies: hobbies }
     continue = create_new_student
   end
-  students
 end
 
 
@@ -155,11 +202,11 @@ def print_header
 end
 
 
-def print(students)
-  if students.empty?
+def print_students_list
+  if @students.empty?
     puts "Oopps :( No students available"
   else
-    students.each.with_index(1) do |student, index|
+    @students.each.with_index(1) do |student, index|
       puts "#{index}. #{student[:name]} (#{student[:cohort]} cohort) "
     end
   end
@@ -174,13 +221,13 @@ def print_alt(students)
   end
 end
 
-def search_by_letter(students)
+def search_by_letter
   puts "Please enter the first letter of the student name you want to search: "
   letter = gets.chomp
   puts letter == '' ? "No search value was provided. Showing the full list of students" : "Search results for names starting with #{letter.upcase} / #{letter.downcase} :"
   divider
   number_of_matches = 0
-  students.each do |student|
+  @students.each do |student|
     if student[:name].start_with?(letter.upcase, letter.downcase)
       puts "#{student[:name]}"
       number_of_matches += 1
@@ -192,14 +239,14 @@ def search_by_letter(students)
 end
 
 
-def search_by_length(students)
+def search_by_length
   puts "Please enter the maximum length you want to search"
   search_length = gets.chomp.to_i
   puts "Search results for names with a maximum length of #{search_length}"
   divider
   number_of_matches = 0
   recommendations = []
-  students.each do |student|
+  @students.each do |student|
     student_name_length = student[:name].length
     if  student_name_length <= search_length
       puts "#{student[:name]}"
@@ -221,12 +268,12 @@ def search_by_length(students)
 end
 
 
-def print_footer(names)
+def print_footer
   puts
-  puts "Overall, we have #{student_count names.count}"
+  puts "Overall, we have #{student_count @students.count}"
   puts
 end
 
 # call the interactive menu
 
-interactive_menu
+interactive_main_menu
