@@ -10,8 +10,19 @@ The student directory script allows you to manage the list of students enrolled 
 
 ## How to use :boom:
 
+**Student Directory**
+
+Providing a .csv file is optional
+
 ```shell
-ruby directory.rb
+ruby directory.rb file.csv
+```
+
+**Print File**
+
+(filename is optional)
+```shell
+ruby print_file.rb filename
 ```
 
 
