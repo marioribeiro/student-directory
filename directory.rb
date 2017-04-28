@@ -45,6 +45,7 @@ def main_menu
   puts "2. List Students"
   puts "3. Search Students"
   puts "4. Save the list to students.csv"
+  puts "5. Load the list from students.csv"
   puts "9. Exit"
 end
 
@@ -80,6 +81,8 @@ def process_main_menu(selection)
     interactive_search_menu
   when "4"
     save_students
+  when "5"
+    load_students
   when "9"
     exit
   else
@@ -181,7 +184,7 @@ def add_hobbies
     hobbies << hobby
     hobby = gets.chomp
   end
-  hobbies
+  hobbies.join(" ")
 end
 
 def input_students
@@ -203,13 +206,21 @@ def save_students
   file = File.open("students.csv", "w")
   # iterate over the array of students
   @students.each do |student|
-    student_data = [student[:name], student[:cohort], student[:country_of_birth], student[:hobbies].join(" ")]
+    student_data = [student[:name], student[:cohort], student[:country_of_birth], student[:hobbies]]
     csv_line = student_data.join(",")
     file.puts csv_line
   end
   file.close
 end
 
+def load_students
+  file = File.open("students.csv", "r")
+  file.readlines.each do |line|
+    name, cohort, country_of_birth, hobbies = line.chomp.split(',')
+    @students << {name: name, cohort: cohort, country_of_birth: country_of_birth, hobbies: hobbies}
+  end
+  file.close
+end
 
 def print_header
   puts "The students of Villains Academy"
