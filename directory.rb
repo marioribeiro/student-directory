@@ -76,7 +76,7 @@ def process_main_menu(selection)
   when "1"
     students = input_students
   when "2"
-    show_students
+    print_students_by_cohort
   when "3"
     interactive_search_menu
   when "4"
@@ -240,12 +240,29 @@ def print_header
 end
 
 
+def print_students_by_cohort
+  if @students.empty?
+    puts "Oopps :( No students available"
+  else
+    cohorts = @students.map do |student|
+       student[:cohort]
+    end
+    cohorts.uniq.each do |cohort|
+      puts "#{cohort} cohort"
+        @students.each do |student|
+          puts student[:name] if student[:cohort] == cohort
+        end
+    end
+  end
+end
+
+
 def print_students_list
   if @students.empty?
     puts "Oopps :( No students available"
   else
     @students.each.with_index(1) do |student, index|
-      puts "#{index}. #{student[:name]} (#{student[:cohort]} cohort) "
+      puts "#{index}. #{student[:name]} (#{student[:cohort]} cohort)"
     end
   end
   divider
