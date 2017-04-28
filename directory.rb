@@ -101,21 +101,21 @@ end
 def interactive_main_menu
   loop do
     main_menu
-    process_main_menu(gets.chomp)
+    process_main_menu(STDIN.gets.chomp)
   end
 end
 
 def interactive_search_menu
   loop do
     search_menu
-    process_search_menu(gets.chomp)
+    process_search_menu(STDIN.gets.chomp)
   end
 end
 
 
 def create_new_student
   puts "Do you want to create a new student? (y/n)"
-  continue = gets.chomp.downcase
+  continue = STDIN.gets.chomp.downcase
   if continue == "y"
     return true
   elsif continue == "n"
@@ -139,7 +139,7 @@ def add_cohort
   end
   puts
   puts "Please enter the month number"
-  cohort = gets.chomp
+  cohort = STDIN.gets.chomp
   case cohort
   when "1"
     cohort = :May
@@ -179,10 +179,10 @@ def add_hobbies
   hobbies = []
   puts "Please enter the hobbies of the student"
   puts "To finish, just hit return twice"
-  hobby = gets.chomp
+  hobby = STDIN.gets.chomp
   while !hobby.empty?
     hobbies << hobby
-    hobby = gets.chomp
+    hobby = STDIN.gets.chomp
   end
   hobbies.join(" ")
 end
@@ -191,10 +191,10 @@ def input_students
   continue = create_new_student
   while continue
     puts "Please enter the name of the student"
-    name = gets.chomp
+    name = STDIN.gets.chomp
     cohort = add_cohort
     puts "Please enter the country of birth"
-    country_of_birth = gets.chomp
+    country_of_birth = STDIN.gets.chomp
     hobbies = add_hobbies
     @students << { name: name, cohort: cohort, country_of_birth: country_of_birth, hobbies: hobbies }
     continue = create_new_student
@@ -213,8 +213,20 @@ def save_students
   file.close
 end
 
-def load_students
-  file = File.open("students.csv", "r")
+def try_load_students
+  filename = ARGV.first # first argument from the command line
+  return if filename.nil? # get out of the method if no argument is given
+  if File.exists?(filename) # if it exists
+    load_students(filename)
+    puts "Loaded #{@students.count} from #{filename}"
+  else
+    puts "Sorry, #{filename} doesn't exist."
+    exit
+  end
+end
+
+def load_students(filename = "students.csv")
+  file = File.open(filename, "r")
   file.readlines.each do |line|
     name, cohort, country_of_birth, hobbies = line.chomp.split(',')
     @students << {name: name, cohort: cohort, country_of_birth: country_of_birth, hobbies: hobbies}
@@ -249,7 +261,7 @@ end
 
 def search_by_letter
   puts "Please enter the first letter of the student name you want to search: "
-  letter = gets.chomp
+  letter = STDIN.gets.chomp
   puts letter == '' ? "No search value was provided. Showing the full list of students" : "Search results for names starting with #{letter.upcase} / #{letter.downcase} :"
   divider
   number_of_matches = 0
@@ -267,7 +279,7 @@ end
 
 def search_by_length
   puts "Please enter the maximum length you want to search"
-  search_length = gets.chomp.to_i
+  search_length = STDIN.gets.chomp.to_i
   puts "Search results for names with a maximum length of #{search_length}"
   divider
   number_of_matches = 0
@@ -301,5 +313,5 @@ def print_footer
 end
 
 # call the interactive menu
-
+try_load_students
 interactive_main_menu
