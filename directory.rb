@@ -43,6 +43,7 @@ end
 
 @loaded_filename = ""
 @default_filename = "students.csv"
+@save_pending = false
 
 # main program
 
@@ -60,7 +61,7 @@ def main_menu
   puts "1. Create students"
   puts "2. List Students"
   puts "3. Search Students"
-  puts "4. Save to file"
+  puts "4. Save to file " + save_pending?
   puts "5. Load from file"
   puts "9. Exit"
 end
@@ -104,7 +105,7 @@ def process_main_menu(selection)
     load_filename = STDIN.gets.chomp
     load_filename.empty? ? load_students : load_students(load_filename)
   when "9"
-    exit
+    confirm_exit
   else
     puts "Invalid option, try again."
   end
@@ -132,6 +133,30 @@ def interactive_search_menu
   end
 end
 
+def confirm_exit
+  if @save_pending == true
+    puts "You have unsaved changes. Are you sure you want to exit (y/n)? "
+    choice = STDIN.gets.chomp.downcase
+    if choice == "y"
+      exit
+    elsif choice == "n"
+      interactive_main_menu
+    else
+      puts "Invalid option."
+      confirm_exit
+    end
+  else
+    exit
+  end
+end
+
+def save_pending?
+  if @save_pending == true
+    "(Changes Pending)"
+  else
+    ""
+  end
+end
 
 def create_new_student
   puts "Do you want to create a new student? (y/n)".center(@width)
@@ -217,6 +242,7 @@ def input_students
     country_of_birth = STDIN.gets.chomp
     hobbies = add_hobbies
     save_student(name, cohort, country_of_birth, hobbies)
+    @save_pending = true
     continue = create_new_student
   end
 end
@@ -230,6 +256,7 @@ def save_students(filename = @default_filename)
       csv << [student[:name], student[:cohort], student[:country_of_birth], student[:hobbies]]
     end
     @loaded_filename = filename
+    @save_pending = false
     puts
     puts "*** Saved successfully to #{filename} ***"
     puts
