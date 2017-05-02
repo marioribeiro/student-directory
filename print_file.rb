@@ -13,7 +13,7 @@ def check_file
 end
 
 def open_default?
-  puts "Do you want to the file directory.rb ? (y/n)"
+  puts "Do you want to the print the contents of directory.rb ? (y/n)"
   choice = STDIN.gets.chomp.downcase
   if choice == "y"
     open_file
